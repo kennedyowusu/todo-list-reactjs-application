@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { v4 as uuidv4 } from 'uuid'
 
 function Form(props) {
   const [newTask, setNewTask] = useState('')
@@ -18,8 +17,6 @@ function Form(props) {
     e.preventDefault()
 
     props.onSubmit({
-      // id: uuidv4(),
-      // id: Math.floor(Math.random() * 10),
       id: giveId(),
       text: newTask
     })

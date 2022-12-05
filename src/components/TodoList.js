@@ -18,10 +18,22 @@ function TodoList() {
       <div>
         {todoList.map((todo, index) => {
           return (
-            <div key={index}>
-              <h3 className="list-item">
+            <div key={index} className="list-item">
+              <h3>
                 {todo.text}
               </h3>
+
+              <button className="button-complete">
+                <i className="fa fa-check-circle" />
+              </button>
+
+              <button className="button-edit">
+                <i className="fa fa-edit" />
+              </button>
+
+              <button className="button-delete">
+                <i className="fa fa-trash" />
+              </button>
             </div>
           )
         })}
