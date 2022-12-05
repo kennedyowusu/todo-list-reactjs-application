@@ -12,6 +12,12 @@ function TodoList() {
     setTodoList([todo, ...todoList])
   }
 
+  const deleteTask = id => {
+    const removeArr = [...todoList].filter(todo => todo.id !== id)
+
+    setTodoList(removeArr)
+  }
+
   return (
     <div>
       <Form onSubmit={addTodo} />
@@ -31,7 +37,10 @@ function TodoList() {
                 <i className="fa fa-edit" />
               </button>
 
-              <button className="button-delete">
+              <button
+                className="button-delete"
+                onClick={() => deleteTask(todo.id)}
+              >
                 <i className="fa fa-trash" />
               </button>
             </div>
