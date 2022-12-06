@@ -50,7 +50,7 @@ function TodoList() {
           return (
             <Task
               key={index}
-              index={index}
+              // index={index}
               todo={todo}
               deleteTask={deleteTask}
               completedTask={completedTask}
