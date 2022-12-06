@@ -31,13 +31,13 @@ function TodoList() {
   }
 
   const completedTask = id => {
-    let updatedTodos = todoList.map(todo => {
-      if (todo.id === id) {
-        todo.completed = !todo.completed
+    let updatedTodos = todoList.map(item => {
+      if (item.id === id) {
+        item.completed = !item.completed
 
-        console.log(todo.completed)
+        console.log(item.completed)
       }
-      return todo
+      return item
     })
     setTodoList(updatedTodos)
   }
