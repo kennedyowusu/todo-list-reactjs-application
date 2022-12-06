@@ -1,13 +1,23 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Form from './Form'
+import Task from './Task'
 
 function TodoList() {
   const [todoList, setTodoList] = useState([])
+
+  useEffect(() => {
+    const todoList = JSON.parse(localStorage.getItem('todoList'))
+    if (todoList) {
+      setTodoList(todoList)
+    }
+  }, [])
 
   const addTodo = todo => {
     if (!todo.text || /^\s*$/.test(todo.text)) {
       return
     }
+
+    localStorage.setItem('todoList', JSON.stringify([todo, ...todoList]))
 
     setTodoList([todo, ...todoList])
   }
@@ -18,32 +28,32 @@ function TodoList() {
     setTodoList(removeArr)
   }
 
+  const completedTask = id => {
+    let updatedTodos = todoList.map(todo => {
+      if (todo.id === id) {
+        todo.completed = !todo.completed
+        console.log(todo.completed)
+        // return { ...todo, completed: true }
+      }
+      return todo
+    })
+    setTodoList(updatedTodos)
+  }
+
   return (
     <div>
       <Form onSubmit={addTodo} />
       <div>
         {todoList.map((todo, index) => {
           return (
-            <div key={index} className="list-item">
-              <h3>
-                {todo.text}
-              </h3>
-
-              <button className="button-complete">
-                <i className="fa fa-check-circle" />
-              </button>
-
-              <button className="button-edit">
-                <i className="fa fa-edit" />
-              </button>
-
-              <button
-                className="button-delete"
-                onClick={() => deleteTask(todo.id)}
-              >
-                <i className="fa fa-trash" />
-              </button>
-            </div>
+            <Task
+              key={index}
+              index={index}
+              todo={todo}
+              deleteTask={deleteTask}
+              completedTask={completedTask}
+              completed={todo.completed}
+            />
           )
         })}
       </div>

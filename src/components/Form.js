@@ -18,7 +18,8 @@ function Form(props) {
 
     props.onSubmit({
       id: giveId(),
-      text: newTask
+      text: newTask,
+      completed: false
     })
 
     setNewTask('')
