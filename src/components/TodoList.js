@@ -5,6 +5,7 @@ import Task from './Task'
 function TodoList() {
   const [todoList, setTodoList] = useState([])
 
+  // Add to local storage
   useEffect(() => {
     const todoList = JSON.parse(localStorage.getItem('todoList'))
     if (todoList) {
@@ -35,7 +36,6 @@ function TodoList() {
         todo.completed = !todo.completed
 
         console.log(todo.completed)
-        // return { ...todo, completed: true }
       }
       return todo
     })
