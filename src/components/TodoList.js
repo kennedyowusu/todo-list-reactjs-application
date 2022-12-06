@@ -26,12 +26,14 @@ function TodoList() {
     const removeArr = [...todoList].filter(todo => todo.id !== id)
 
     setTodoList(removeArr)
+    localStorage.setItem('todoList', JSON.stringify(removeArr))
   }
 
   const completedTask = id => {
     let updatedTodos = todoList.map(todo => {
       if (todo.id === id) {
         todo.completed = !todo.completed
+
         console.log(todo.completed)
         // return { ...todo, completed: true }
       }
