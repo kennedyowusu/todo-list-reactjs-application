@@ -27,7 +27,6 @@ function TaskItems({
                   <input type="checkbox"
                     className="checkbox"
                     tabIndex='0'
-                    status={item.status}
                     onChange={() => handleComplete(item.id)}
                   />
 
