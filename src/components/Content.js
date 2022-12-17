@@ -50,11 +50,12 @@ function Content() {
       const editTaskTitle = existingList.find((item) => item.id === toggleSubmitButton);
 
       // if the user didn't change the task title, then we don't need to update the task title
-      if (editTaskTitle.name === newListTitle) { 
-        setToggleSubmitButton(false);
-        setNewListTitle('');
-        return;
-      }
+      
+      // if (editTaskTitle.name === newListTitle) { 
+      //   setToggleSubmitButton(false);
+      //   setNewListTitle('');
+      //   return;
+      // }
 
       // if the user changed the task title, then we need to update the task title
       const updatedTaskItem = existingList.map((item) => item.id === editTaskTitle.id ? ({ ...item, name: newListTitle }) : item);
