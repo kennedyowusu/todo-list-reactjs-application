@@ -16,7 +16,9 @@ function Content() {
 
   const [newListTitle, setNewListTitle] = useState('');
 
-  const [editId, setEditId] = useState(false);
+  // toggleSubmitButton is the id of the task that the user wants to edit
+  // setToggleSubmitButton is the function that toggles the edit mode
+  const [toggleSubmitButton, setToggleSubmitButton] = useState(false);
 
   const saveToLocalStorage = (taskInfo) => { 
     setExistingList(taskInfo);
@@ -44,12 +46,12 @@ function Content() {
     e.preventDefault();
 
     // if the user is in edit mode, then we need to update the task title
-    if (editId) {
-      const editTaskTitle = existingList.find((item) => item.id === editId);
+    if (toggleSubmitButton) {
+      const editTaskTitle = existingList.find((item) => item.id === toggleSubmitButton);
 
       // if the user didn't change the task title, then we don't need to update the task title
       if (editTaskTitle.name === newListTitle) { 
-        setEditId(false);
+        setToggleSubmitButton(false);
         setNewListTitle('');
         return;
       }
@@ -61,7 +63,7 @@ function Content() {
       saveToLocalStorage(updatedTaskItem);
 
       // reset the toggleMode and newListTitle
-      setEditId(false);
+      setToggleSubmitButton(false);
 
       // reset the newListTitle
       setNewListTitle('');
@@ -105,7 +107,7 @@ function Content() {
     console.log(editTask); // {id: 1, name: "hello", status: false} This is the data of the task which the user clicked and wants to edit the title. So we need to retrieve the name of the task and update the value of the input field.
     
     setNewListTitle(editTask.name); // this will update the value of the input field
-    setEditId(id); // this will toggle the edit mode
+    setToggleSubmitButton(id); // this will toggle the edit mode
   }
   
   return (
@@ -114,7 +116,9 @@ function Content() {
         handleSubmit={handleSubmit}
         newListTitle={newListTitle}
         setNewListTitle={setNewListTitle}
-        editId={editId}
+        toggleSubmitButton = {
+          toggleSubmitButton
+        }
 
       />
       <TaskItems 

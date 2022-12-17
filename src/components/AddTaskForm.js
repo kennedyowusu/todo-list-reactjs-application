@@ -3,7 +3,8 @@ function AddTaskForm({
   newListTitle,
   setNewListTitle,
   handleSubmit,
-editId}) {
+  toggleSubmitButton
+}) {
 
   return (
     <form onSubmit={handleSubmit}>
@@ -19,7 +20,7 @@ editId}) {
       <button className="button-add" type="submit"
         aria-label='Add Item'>
         {
-          editId ? <i className = "fa fa-edit" /> : <i className = "fa fa-plus" />
+          toggleSubmitButton ? <i className = "fa fa-edit" /> : <i className = "fa fa-plus" />
         }
       </button>
     </form>
