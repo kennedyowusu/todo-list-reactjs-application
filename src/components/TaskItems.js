@@ -13,7 +13,7 @@ function TaskItems({
             return (
               <div className="list-item" key={item.id} >
                 
-                <div className="">
+                <div className="list-item-title">
                   <p style={
                     (item.status) ? { textDecoration: 'line-through' } : { textDecoration: 'none' }
                   }

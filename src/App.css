@@ -64,6 +64,12 @@
   color: #ccc;
 }
 
+.list-item-title {
+  width: 200px;
+  font-size: 25px;
+  margin-right: 10px;
+}
+
 .button-container {
   display: flex;
   align-items: center;
