@@ -17,6 +17,8 @@ function Content() {
   const addNewTask = (title) => { // title is the value of newListTitle
     let eachTaskId = existingList.length > 0 ? existingList[existingList.length - 1].id + 1 : 1;
 
+    // if (!title) return alert('Enter Task Title'); // if title is empty, return alert
+
     const taskObject = {
       id: eachTaskId,
       name: title,
