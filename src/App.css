@@ -71,7 +71,10 @@
   
 }
 
-.button-complete, .button-delete, .button-edit {
+.button-complete, 
+.button-delete, 
+.button-edit, 
+.checkbox  {
   border: none;
   outline: none;
   cursor: pointer;
@@ -95,11 +98,11 @@
   color: lightseagreen;
 }
 
-.complete {
-  text-decoration-line: line-through;
-  text-decoration-style: solid;
-  text-decoration-color: #ff6c6c;
-  opacity: 0.6;
+.checkbox {
+  height: 25px;
+  width: 25px;
+  border: 1px solid #ccc;
+  margin-left: 16rem;
 }
 
 .list {

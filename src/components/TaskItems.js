@@ -1,6 +1,10 @@
 import React from 'react'
 
-function TaskItems({ existingList, handleDelete }) {
+function TaskItems({
+  existingList,
+  handleDelete,
+  handleComplete
+}) {
   return (
     <section>
       <div>
@@ -10,14 +14,22 @@ function TaskItems({ existingList, handleDelete }) {
               <div className="list-item" key={item.id} >
                 
                 <div className="">
-                  <p>{item.name}</p>
+                  <p style={
+                    (item.status) ? { textDecoration: 'line-through' } : { textDecoration: 'none' }
+                  }
+                    onDoubleClick={() => handleComplete(item.id)}
+                  >{item.name}
+                  </p>
                 </div>
 
                 <div className="button-container">
-                  <button className = "button-complete" >
-                    <i className="fa fa-check-circle" />
-                    
-                  </button>
+
+                  <input type="checkbox"
+                    className="checkbox"
+                    tabIndex='0'
+                    status={item.status}
+                    onChange={() => handleComplete(item.id)}
+                  />
 
                     <button className = "button-edit" >
                       <i className="fa fa-edit" />

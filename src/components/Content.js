@@ -50,6 +50,11 @@ function Content() {
     const remainingList = existingList.filter((item) => item.id !== id);
     saveToLocalStorage(remainingList);
   }
+
+  const handleComplete = (id) => { 
+    const updatedList = existingList.map((item) => item.id === id ? { ...item, status: !item.status } : item);
+    saveToLocalStorage(updatedList);
+  }
   
   return (
     <section>
@@ -67,6 +72,7 @@ function Content() {
           setExistingList
         }
         handleDelete={handleDelete}
+        handleComplete={handleComplete}
       />
       
     </section>
