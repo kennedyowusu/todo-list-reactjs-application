@@ -1,6 +1,7 @@
 import React, {  useState } from 'react'
 import AddTaskForm from './AddTaskForm'
 import TaskItems from './TaskItems'
+import Footer from './Footer'
 
 function Content() {
   
@@ -57,6 +58,11 @@ function Content() {
     const updatedList = existingList.map((item) => item.id === id ? { ...item, status: !item.status } : item);
     saveToLocalStorage(updatedList);
   }
+
+  const removeAllTasks = () => { 
+    const emptyList = [];
+    saveToLocalStorage(emptyList);
+  }
   
   return (
     <section>
@@ -75,6 +81,9 @@ function Content() {
         }
         handleDelete={handleDelete}
         handleComplete={handleComplete}
+      />
+      <Footer 
+        removeAllTasks={removeAllTasks}
       />
       
     </section>
