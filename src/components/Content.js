@@ -2,6 +2,7 @@ import React, {  useState } from 'react'
 import AddTaskForm from './AddTaskForm'
 import TaskItems from './TaskItems'
 import Footer from './Footer'
+import Search from './Search'
 
 function Content() {
   
@@ -19,6 +20,8 @@ function Content() {
   // toggleSubmitButton is the id of the task that the user wants to edit
   // setToggleSubmitButton is the function that toggles the edit mode
   const [toggleSubmitButton, setToggleSubmitButton] = useState(false);
+
+  const [searchTerm, setSearchTerm] = useState('');
 
   const saveToLocalStorage = (taskInfo) => { 
     setExistingList(taskInfo);
@@ -113,6 +116,7 @@ function Content() {
   
   return (
     <section>
+      
       <AddTaskForm
         handleSubmit={handleSubmit}
         newListTitle={newListTitle}
@@ -122,7 +126,15 @@ function Content() {
         }
 
       />
-      <TaskItems 
+      
+      <Search
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+      />
+
+      <h2 style={{ color: 'white', fontSize: '20px', textAlign: 'center', marginTop: '20px' }}>All Tasks</h2>
+
+      <TaskItems
         existingList = {
           existingList
         }

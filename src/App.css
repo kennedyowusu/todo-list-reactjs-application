@@ -136,3 +136,15 @@ input:focus, button:focus {
   outline: none,;
 }
 
+.search-input {
+  width: 95%;
+  padding: 15px;
+  margin-right: 25px;
+  margin-top: 20px;
+  font-size: 20px;
+  color: #000;
+  background-color: #ccc;
+  border: 1px solid #c89666;
+  border-radius: 10px;
+}
+
