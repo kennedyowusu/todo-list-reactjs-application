@@ -5,11 +5,18 @@ import Footer from './Footer'
 
 function Content() {
   
+  // get the existing list from local storage
+  // if there is no existing list, then set the existing list to an empty array
+  // State for all the existing tasks in the list
   const [existingList, setExistingList] = useState(localStorage.getItem('list') ? JSON.parse(localStorage.getItem('list')) : []);
+
+  // newListTitle is the value of the input field
+  // setNewListTitle is the function that updates the value of the input field
+  // State for the new task title that the user wants to add to the list --> Single task from the user
 
   const [newListTitle, setNewListTitle] = useState('');
 
-  const [toggleMode, setToggleMode] = useState(false);
+  const [editId, setEditId] = useState(false);
 
   const saveToLocalStorage = (taskInfo) => { 
     setExistingList(taskInfo);
@@ -28,26 +35,41 @@ function Content() {
       status: false
     };
 
-    const newListItems = [...existingList, taskObject];
+    const newListItems = [...existingList, taskObject]; // add the new task to the existing list of tasks --> newListItems is the new list of tasks that includes the new task and the existing tasks in the list
+
     saveToLocalStorage(newListItems);
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (toggleMode) {
-      const editTaskTitle = existingList.find((item) => item.id === toggleMode);
+    // if the user is in edit mode, then we need to update the task title
+    if (editId) {
+      const editTaskTitle = existingList.find((item) => item.id === editId);
 
+      // if the user didn't change the task title, then we don't need to update the task title
+      if (editTaskTitle.name === newListTitle) { 
+        setEditId(false);
+        setNewListTitle('');
+        return;
+      }
+
+      // if the user changed the task title, then we need to update the task title
       const updatedTaskItem = existingList.map((item) => item.id === editTaskTitle.id ? ({ ...item, name: newListTitle }) : item);
 
+      // save the updated task title to local storage
       saveToLocalStorage(updatedTaskItem);
-      setToggleMode(false);
+
+      // reset the toggleMode and newListTitle
+      setEditId(false);
+
+      // reset the newListTitle
       setNewListTitle('');
       return;
     }
 
     if (!newListTitle) {
-      
+      return alert("Enter Task Title"); // but not necessary because we have required attribute in the input field
     } 
 
     const duplicateTaskTitle = existingList.find((item) => item.title === newListTitle);
@@ -62,6 +84,7 @@ function Content() {
     
   }
 
+  // if the user clicks on the delete button, then we need to delete the task from the list and save the updated list to local storage 
   const handleDelete = (id) => {
     const remainingList = existingList.filter((item) => item.id !== id);
     saveToLocalStorage(remainingList);
@@ -82,7 +105,7 @@ function Content() {
     console.log(editTask); // {id: 1, name: "hello", status: false} This is the data of the task which the user clicked and wants to edit the title. So we need to retrieve the name of the task and update the value of the input field.
     
     setNewListTitle(editTask.name); // this will update the value of the input field
-    setToggleMode(id); // this will change the submit button to edit button
+    setEditId(id); // this will toggle the edit mode
   }
   
   return (
@@ -91,7 +114,7 @@ function Content() {
         handleSubmit={handleSubmit}
         newListTitle={newListTitle}
         setNewListTitle={setNewListTitle}
-        toggleMode={toggleMode}
+        editId={editId}
 
       />
       <TaskItems 
