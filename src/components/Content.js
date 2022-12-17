@@ -9,6 +9,8 @@ function Content() {
 
   const [newListTitle, setNewListTitle] = useState('');
 
+  const [toggleMode, setToggleMode] = useState(false);
+
   const saveToLocalStorage = (taskInfo) => { 
     setExistingList(taskInfo);
     localStorage.setItem('list', JSON.stringify(taskInfo));
@@ -33,8 +35,19 @@ function Content() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (toggleMode) {
+      const editTaskTitle = existingList.find((item) => item.id === toggleMode);
+
+      const updatedTaskItem = existingList.map((item) => item.id === editTaskTitle.id ? ({ ...item, name: newListTitle }) : item);
+
+      saveToLocalStorage(updatedTaskItem);
+      setToggleMode(false);
+      setNewListTitle('');
+      return;
+    }
+
     if (!newListTitle) {
-      return alert('Enter Task Title');
+      
     } 
 
     const duplicateTaskTitle = existingList.find((item) => item.title === newListTitle);
@@ -63,6 +76,24 @@ function Content() {
     const emptyList = [];
     saveToLocalStorage(emptyList);
   }
+
+  // edit task
+  /*
+    When a user clicks the edit button:
+    
+    1. retrieve the id and title of the data which the user clicked
+    2. set the toggle mode to change the submit button to edit button
+    3. update the value of the set input wiht the new updaed valued to 
+    .
+  */
+  
+  const handleEditTask = (id) => { 
+    const editTask = existingList.find((item) => item.id === id);
+    console.log(editTask); // {id: 1, name: "hello", status: false} This is the data of the task which the user clicked and wants to edit the title. So we need to retrieve the name of the task and update the value of the input field.
+    
+    setNewListTitle(editTask.name); // this will update the value of the input field
+    setToggleMode(id); // this will change the submit button to edit button
+  }
   
   return (
     <section>
@@ -70,6 +101,7 @@ function Content() {
         handleSubmit={handleSubmit}
         newListTitle={newListTitle}
         setNewListTitle={setNewListTitle}
+        toggleMode={toggleMode}
 
       />
       <TaskItems 
@@ -81,6 +113,7 @@ function Content() {
         }
         handleDelete={handleDelete}
         handleComplete={handleComplete}
+        handleEditTask={handleEditTask}
       />
       <Footer 
         removeAllTasks={removeAllTasks}

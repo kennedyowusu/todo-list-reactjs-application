@@ -3,7 +3,8 @@ import React from 'react'
 function TaskItems({
   existingList,
   handleDelete,
-  handleComplete
+  handleComplete,
+  handleEditTask
 }) {
   return (
     <section>
@@ -30,7 +31,9 @@ function TaskItems({
                     onChange={() => handleComplete(item.id)}
                   />
 
-                    <button className = "button-edit" >
+                  <button className="button-edit"
+                    onClick={() => handleEditTask(item.id)}
+                  >
                       <i className="fa fa-edit" />
                   </button>
 

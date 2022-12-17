@@ -3,6 +3,7 @@ function AddTaskForm({
   newListTitle,
   setNewListTitle,
   handleSubmit,
+  toggleMode,
 }) {
 
   return (
@@ -18,7 +19,9 @@ function AddTaskForm({
       />
       <button className="button-add" type="submit"
         aria-label='Add Item'>
-        Add Task
+        {
+          toggleMode ? < i className = "fa fa-edit" / > : < i className = "fa fa-plus" / >
+        }
       </button>
     </form>
   )
