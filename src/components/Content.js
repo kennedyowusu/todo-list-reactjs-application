@@ -15,7 +15,7 @@ function Content() {
 
   // add new todo task to the list and save to local storage
   const addNewTask = (title) => { // title is the value of newListTitle
-    const eachTaskId = existingList.length + 1;
+    let eachTaskId = existingList.length > 0 ? existingList[existingList.length - 1].id + 1 : 1;
 
     const taskObject = {
       id: eachTaskId,
