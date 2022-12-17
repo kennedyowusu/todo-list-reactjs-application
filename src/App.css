@@ -64,6 +64,13 @@
   color: #ccc;
 }
 
+.button-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  
+}
+
 .button-complete, .button-delete, .button-edit {
   border: none;
   outline: none;
@@ -76,7 +83,7 @@
 
 .button-complete {
   color: #ff6c6c;
-  margin-left: auto;
+  margin-left: 16rem;
 }
 
 .button-edit {
