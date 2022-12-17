@@ -38,7 +38,11 @@ function TaskItems({
                     onClick={() => handleDelete(item.id)}
                     tabIndex='0'
                   >
-                      <i className="fa fa-trash" />
+                    <i className="fa fa-trash" 
+                      role={'button'}
+                      aria-label={`Delete ${item.name}`}
+                      tabIndex='0'
+                      />
                   </button>
                 </div>
 
