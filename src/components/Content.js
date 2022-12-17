@@ -76,16 +76,6 @@ function Content() {
     const emptyList = [];
     saveToLocalStorage(emptyList);
   }
-
-  // edit task
-  /*
-    When a user clicks the edit button:
-    
-    1. retrieve the id and title of the data which the user clicked
-    2. set the toggle mode to change the submit button to edit button
-    3. update the value of the set input wiht the new updaed valued to 
-    .
-  */
   
   const handleEditTask = (id) => { 
     const editTask = existingList.find((item) => item.id === id);
