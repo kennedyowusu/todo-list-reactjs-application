@@ -40,7 +40,7 @@ function Content() {
       status: false
     };
 
-    const newListItems = [taskObject, ...existingList]; // add the new task to the existing list of tasks --> newListItems is the new list of tasks that includes the new task and the existing tasks in the list
+    const newListItems = [...existingList, taskObject]; // add the new task to the existing list of tasks --> newListItems is the new list of tasks that includes the new task and the existing tasks in the list
 
     saveToLocalStorage(newListItems);
   }
