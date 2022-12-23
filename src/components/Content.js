@@ -97,8 +97,8 @@ function Content() {
   }
 
   const handleComplete = (id) => { 
-    const updatedList = existingList.map((item) => item.id === id ? { ...item, status: !item.status } : item);
-    saveToLocalStorage(updatedList);
+    const completedTask = existingList.map((item) => item.id === id ? { ...item, status: !item.status } : item);
+    saveToLocalStorage(completedTask);
   }
 
   const removeAllTasks = () => { 
